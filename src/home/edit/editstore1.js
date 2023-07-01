@@ -12,12 +12,15 @@ const Editstoreform = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put("http://localhost:8080/updateshop1", {
-        shop_name: shop_name,
-        shop_owner: shop_owner,
-        shop_about: shop_about,
-        shop_prods: shop_prods,
-      });
+      const response = await axios.put(
+        "https://backend-zain-production.up.railway.app/updateshop1",
+        {
+          shop_name: shop_name,
+          shop_owner: shop_owner,
+          shop_about: shop_about,
+          shop_prods: shop_prods,
+        }
+      );
       setMessage(response.data.message);
     } catch (error) {
       console.error(error);

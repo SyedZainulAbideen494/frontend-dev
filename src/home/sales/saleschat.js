@@ -12,11 +12,14 @@ const Fetchmessage = () => {
     setloading(true);
     const token = localStorage.getItem("token");
     setloading(true);
-    const response = await fetch("http://localhost:8080/message", {
-      headers: {
-        Authorization: params.orders_id,
-      },
-    });
+    const response = await fetch(
+      "https://backend-zain-production.up.railway.app/message",
+      {
+        headers: {
+          Authorization: params.orders_id,
+        },
+      }
+    );
     const data = await response.json();
     const transformeduser = data.chat.map((userdata) => {
       return {
@@ -68,7 +71,7 @@ function Saleschat(props) {
 
   const addshophandler = () => {
     Axios.post(
-      "http://localhost:8080/sendmessage",
+      "https://backend-zain-production.up.railway.app/sendmessage",
       {
         message: message,
       },

@@ -9,11 +9,14 @@ const Shopsapp = (props) => {
     setloading(true);
     const token = localStorage.getItem("token");
     setloading(true);
-    const response = await fetch("http://localhost:8080/users/profile/shops", {
-      headers: {
-        Authorization: token,
-      },
-    });
+    const response = await fetch(
+      "https://backend-zain-production.up.railway.app/users/profile/shops",
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
 
     const data = await response.json();
     const transformedshop = data.shops.map((shopdata) => {

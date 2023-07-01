@@ -42,7 +42,9 @@ export default Ordersdeatilspage;
 export async function loader({ request, params }) {
   const id = params.id;
 
-  const response = await fetch("http://localhost:8080/allorders" + id);
+  const response = await fetch(
+    "https://backend-zain-production.up.railway.app/allorders" + id
+  );
 
   if (!response.ok) {
     throw json(

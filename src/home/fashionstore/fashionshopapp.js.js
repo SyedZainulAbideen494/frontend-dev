@@ -13,11 +13,14 @@ function FashionShopapp() {
   const token = localStorage.getItem("token");
   const fetchprodshandler = useCallback(async () => {
     setloading(true);
-    const response = await fetch("http://localhost:8080/user/shops/fashion", {
-      headers: {
-        Authorization: token,
-      },
-    });
+    const response = await fetch(
+      "https://backend-zain-production.up.railway.app/user/shops/fashion",
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
     const data = await response.json();
     const transformedItems = data.shops.map((itemsdata) => {
       return {
@@ -32,7 +35,7 @@ function FashionShopapp() {
         shop_blockheading3: itemsdata.shop_blockheading3,
         shop_block3: itemsdata.shop_block3,
         user_id: itemsdata.user_id,
-        images: `http://localhost:8080/images/${itemsdata.images}`,
+        images: `https://backend-zain-production.up.railway.app/images/${itemsdata.images}`,
       };
     });
     setitems(transformedItems);

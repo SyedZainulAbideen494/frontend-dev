@@ -7,7 +7,9 @@ const Userapp = (props) => {
 
   const fetchusershandler = useCallback(async () => {
     setloading(true);
-    const response = await fetch("http://localhost:8080/users");
+    const response = await fetch(
+      "https://backend-zain-production.up.railway.app/users"
+    );
     console.log(response);
     const data = await response.json();
     const transformeduser = data.user.map((userdata) => {

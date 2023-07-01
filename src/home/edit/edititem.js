@@ -11,11 +11,14 @@ const Edititemform = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put("http://localhost:8080/updateprods", {
-        title: title,
-        price: price,
-        amount: amount,
-      });
+      const response = await axios.put(
+        "https://backend-zain-production.up.railway.app/updateprods",
+        {
+          title: title,
+          price: price,
+          amount: amount,
+        }
+      );
       setMessage(response.data.message);
     } catch (error) {
       console.error(error);

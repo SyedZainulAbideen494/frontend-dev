@@ -25,11 +25,14 @@ const Profileuniqueidapp = (props) => {
   const fetchusershandler = useCallback(async () => {
     const token = localStorage.getItem("token");
     setloading(true);
-    const response = await fetch("http://localhost:8080/users/", {
-      headers: {
-        Authorization: token,
-      },
-    });
+    const response = await fetch(
+      "https://backend-zain-production.up.railway.app/users/",
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
     const data = await response.json();
     const transformeduser = data.user.map((userdata) => {
       return {

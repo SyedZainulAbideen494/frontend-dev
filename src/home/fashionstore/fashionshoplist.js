@@ -13,6 +13,7 @@ const FashionShopslist = (props) => {
               to={`/mystore/fashion/${item.shop_id}/${item.shop_name}/${item.shop_owner}/${item.shop_about}/${item.shop_tagline}/${item.shop_abouthead}/${item.shop_block2}/${item.shop_blockheading2}/${item.shop_blockheading3}/${item.shop_block3}/${item.user_id}`}
             >
               <FashionShopsinprofile
+                key={item.shop_id}
                 shop_id={item.shop_id}
                 shop_name={item.shop_name}
                 shop_owner={item.shop_owner}
