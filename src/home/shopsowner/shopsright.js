@@ -403,7 +403,6 @@ function Productsinshopapp() {
   );
 }
 const Addproductstodatabase = (props) => {
-  const [id, setid] = useState("");
   const [title, settitle] = useState("");
   const [price, setprice] = useState("");
   const [amount, setamount] = useState("");
@@ -411,28 +410,32 @@ const Addproductstodatabase = (props) => {
 
   const params = useParams();
 
-  const shop_id = useEffect(() => {
-    setid(params.shop_id);
-  }, []);
-
   const token = localStorage.getItem("token");
 
-  const addshophandler = () => {
+  const addshophandler = (e) => {
+    e.preventDefault();
     const formdata = new FormData();
     formdata.append("image", images);
-    formdata.append("title", title); // Add title field
-    formdata.append("price", price); // Add price field
-    formdata.append("amount", amount); // Add amount field
-    Axios.post(
-      "https://backend-zain-production.up.railway.app/addProduct",
-      formdata,
-      {
-        headers: {
-          Authorization: params.shop_id,
-        },
-      }
-    );
+    formdata.append("title", title);
+    formdata.append("price", price);
+    formdata.append("amount", amount);
+    Axios.post("http://localhost:8080/addProduct", formdata, {
+      headers: {
+        Authorization: params.shop_id,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        // Handle success
+        // Add your own logic here
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle error
+        // Add your own error handling here
+      });
   };
+
   return (
     <Fragment>
       <div className="formitemadd">
@@ -448,7 +451,7 @@ const Addproductstodatabase = (props) => {
           </div>
           <div className="inpt">
             <input
-              type="txt"
+              type="text"
               placeholder="Product title"
               value={title}
               onChange={(e) => settitle(e.target.value)}
@@ -498,6 +501,7 @@ const Addproductstodatabase = (props) => {
     </Fragment>
   );
 };
+
 
 function Shopsright({ items }) {
   const [showform, setshowform] = useState(false);
